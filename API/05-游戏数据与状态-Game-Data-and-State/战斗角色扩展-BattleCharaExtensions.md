@@ -60,6 +60,47 @@ battleChara.GetStatusLeftTime(statusId)
 
 说明：以上三个状态查询由 `StatusHelper` 提供具体实现。
 
+## GetStatusSourceEntityId
+
+方法：
+
+```csharp
+battleChara.GetStatusSourceEntityId(statusId)
+```
+
+参数含义：
+
+| 参数 | 类型 | 含义 |
+| --- | --- | --- |
+| `statusId` | `uint` | 状态效果 ID。 |
+
+作用：获取指定状态效果的施加者实体 ID。
+
+返回值：`uint`。状态不存在时返回 `0`。
+
+说明：等同于 [StatusHelper.GetStatusSourceEntityId](./状态效果-StatusHelper.md#getstatussourceentityid)。
+
+## HasStatusWithSource
+
+方法：
+
+```csharp
+battleChara.HasStatusWithSource(statusId, sourceId)
+```
+
+参数含义：
+
+| 参数 | 类型 | 含义 |
+| --- | --- | --- |
+| `statusId` | `uint` | 状态效果 ID。 |
+| `sourceId` | `uint` | 施加者的实体 ID。 |
+
+作用：判断战斗角色是否拥有由指定实体施加的状态效果。
+
+返回值：`bool`。存在匹配状态时返回 `true`，否则返回 `false`。
+
+说明：等同于 [StatusHelper.HasStatusWithSource](./状态效果-StatusHelper.md#hasstatuswithsource)。
+
 ## DistanceToMe
 
 方法：

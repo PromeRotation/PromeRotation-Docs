@@ -27,6 +27,36 @@ GameData.IsInCombat()
 
 返回值：`bool`。处于战斗状态时返回 `true`，否则返回 `false`。
 
+## IsInPvPArea
+
+方法：
+
+```csharp
+GameData.IsInPvPArea()
+```
+
+参数含义：无。
+
+作用：判断当前是否处于 PvP 区域。
+
+返回值：`bool`。处于 PvP 区域时返回 `true`，否则返回 `false`。
+
+## IsTargetInCombat
+
+方法：
+
+```csharp
+GameData.IsTargetInCombat()
+```
+
+参数含义：无。
+
+作用：判断当前目标自身是否处于战斗状态。
+
+返回值：`bool`。目标处于战斗状态时返回 `true`；没有目标或无法读取时返回 `false`。
+
+说明：读取的是目标的战斗状态，可在本地玩家尚未获得仇恨时判断队友是否已开战。
+
 ## IsInBossRoom
 
 方法：
@@ -56,6 +86,26 @@ GameData.GetCountdown()
 作用：获取战斗倒计时的剩余时间。
 
 返回值：`float`。返回剩余秒数；没有倒计时或无法读取时返回 `0`。
+
+## TryGetCountdown
+
+方法：
+
+```csharp
+GameData.TryGetCountdown(out countdown)
+```
+
+参数含义：
+
+| 参数 | 类型 | 含义 |
+| --- | --- | --- |
+| `countdown` | `out float` | 剩余秒数；没有倒计时时为 `0`。 |
+
+作用：尝试读取战斗倒计时。
+
+返回值：`bool`。读取成功时返回 `true`（包括没有倒计时的情况）；底层读取异常时返回 `false`。
+
+说明：需要区分“没有倒计时”和“读取失败”时使用；只需要秒数时用 `GetCountdown()`。
 
 ## IsPlayerOccupied
 

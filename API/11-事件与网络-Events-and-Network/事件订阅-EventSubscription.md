@@ -2,7 +2,7 @@
 
 命名空间：`PromeRotation.LogSystem` / `PromeRotation.Hosting`
 
-订阅宿主公开的战斗与环境事件。所有事件按 ACT/Overlay 日志行的最终语义归类，共 31 个公开事件。
+订阅宿主公开的战斗与环境事件。所有事件按 ACT/Overlay 日志行的最终语义归类，共 32 个公开事件。
 
 ## 注意事项
 
@@ -52,6 +52,7 @@
   - [BattleEnded](#battleended)
   - [CountdownStarted](#countdownstarted)
   - [NpcYell](#npcyell)
+  - [InstanceContentText](#instancecontenttext)
   - [MapEffect](#mapeffect)
   - [DirectorUpdate](#directorupdate)
 - [实体](#entity-group)
@@ -379,6 +380,24 @@
 | `SourceId` | `ulong` | 发言 NPC 实例 ID |
 
 注意：事件不直接携带最终本地化文本，需按 sheet 和语言解析。
+
+<a id="instancecontenttext"></a>
+### InstanceContentText
+
+类型：`LogSystemInstanceContentTextEvent`（`LogSystemEventKind.InstanceContentText`）
+
+订阅：`ctx.OnLogEvent<LogSystemInstanceContentTextEvent>(...)` 或 `Events.Subscribe<LogSystemInstanceContentTextEvent>(...)`
+
+作用：副本在屏幕中央显示战斗台词（InstanceContentTextData）时触发。
+
+字段：
+
+| 字段 | 类型 | 含义 |
+| --- | --- | --- |
+| `RowID` | `uint` | InstanceContentTextData 表行 ID（稳定判断优先用它） |
+| `Text` | `string` | 解析后的台词文本（含 RSV 替换）；无法解析时为空字符串 |
+
+注意：`Text` 随客户端语言变化，触发器应优先用 `RowID`。
 
 <a id="mapeffect"></a>
 ### MapEffect
